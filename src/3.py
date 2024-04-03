@@ -1,10 +1,9 @@
+# 加载
 from langchain_community.document_loaders.text import TextLoader
-
-loader = TextLoader("../data/qxy-all.txt", encoding="utf-8")
-
 from langchain.text_splitter import TokenTextSplitter
 
-text_spliter = TokenTextSplitter(chunk_size=500, chunk_overlap=100)
+loader = TextLoader("../data/qxy-all.txt", encoding="utf-8")
+text_spliter = TokenTextSplitter(chunk_size=200, chunk_overlap=50)
 docs = text_spliter.split_documents(loader.load())
 
 # from towhee import AutoPipes
@@ -65,7 +64,7 @@ def get_documents(content) -> List[Document]:
         data=[embedding],
         anns_field="embedding",
         param=params,
-        limit=5,
+        limit=10,
         output_fields=["content"]
     )
     documents = []
