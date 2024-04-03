@@ -1,8 +1,6 @@
-from pymilvus import Collection, CollectionSchema, FieldSchema, DataType, connections
+from pymilvus import Collection, CollectionSchema, FieldSchema, DataType
+from init import connectMilvus
 
-print("connect to milvus")
-connections.connect(alias="default", host="localhost", port="19530")
-print("connect to milvus success")
 
 def build_ai4qxy_collection() -> Collection:
     print("start to build ai4qxy collection")
@@ -26,5 +24,7 @@ def build_ai4qxy_collection() -> Collection:
     print("build success")
     return ai4qxy_collection
 
+
 if __name__ == "__main__":
+    connectMilvus()
     build_ai4qxy_collection()
